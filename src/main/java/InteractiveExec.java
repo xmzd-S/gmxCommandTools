@@ -16,12 +16,33 @@ public class InteractiveExec {
             String dir = scanner.next();
             File workSpace = new File(dir);
             while (true){
+                System.out.println("输入-1，排队运行任务（任务需要在MultiTask.properties中定义）");
                 System.out.println("输入0，重新更换工作目录");
                 for(int i = 0 ; i< commands.size() ; i++){
                     System.out.println("输入"+commands.get(i).getId()+",调用"+commands.get(i).getContent());
                 }
                 int i = scanner.nextInt();
-                if( i == 0){
+                if (i == -1){
+                    ArrayList<Task> multiTask = MultiTask.getCommands();
+                    for (Task task : multiTask){
+                        System.out.println("======begin: 工作目录"+ task.getWorkDir()+",命令 "+task.getCommand()+"\n+" +
+                                "================================================\n" +
+                                "================================================\n" +
+                                "================================================\n" +
+                                "================================================\n" +
+                                "================================================\n" +
+                                "================================================\n" +
+                                "================================================\n" +
+                                "================================================\n" +
+                                "================================================\n" +
+                                "================================================\n" +
+                                "================================================\n");
+                        callCmd(task.getCommand(),new File(task.getWorkDir()));
+                        System.out.println("======completion: 工作目录"+ task.getWorkDir()+",命令 "+task.getCommand()+"\n+" +
+                                "================================================\n" +
+                                "================================================\n" );
+                    }
+                } else if( i == 0){
                     break;
                 } else {
                     try {
