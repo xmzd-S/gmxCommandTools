@@ -46,7 +46,7 @@ public class InteractiveExec {
                     break;
                 } else {
                     try {
-                        callCmd(commands.get(i+1).getContent(),workSpace);
+                        callCmd(commands.get(i-1).getContent(),workSpace);
                     }catch (Exception e){
                         System.out.println("输入错误");
                         Thread.sleep(1000);
